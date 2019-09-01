@@ -1,0 +1,18 @@
+scopes:
+  categories:
+    label: Category
+    modelClass: Roojai\Blogs\Models\Category
+    conditions: id in (select blog_id from roojai_blogs_categories_blogs where category_id in (:filtered))
+    nameFrom: name
+  unpublished:
+    label: Show only unpublished
+    type: checkbox
+    conditions: publicview = false
+  featured:
+    label: Show only featured
+    type: checkbox
+    conditions: feature = true
+  date:
+    label: 'Date Range'
+    type: daterange
+    conditions: date >= ':after' AND date <= ':before'

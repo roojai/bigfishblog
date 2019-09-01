@@ -1,0 +1,12 @@
+list: $/roojai/blogs/models/category/columns.yaml
+modelClass: Roojai\Blogs\Models\Category
+title: Categories
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'roojai/blogs/categories/update/:id'

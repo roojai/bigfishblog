@@ -1,0 +1,12 @@
+list: $/roojai/blogs/models/gallery/columns.yaml
+modelClass: Roojai\Blogs\Models\Gallery
+title: Gallerys
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'roojai/blogs/gallerys/update/:id'

@@ -1,0 +1,10 @@
+name: Blogs
+form: $/roojai/blogs/models/blog/fields.yaml
+modelClass: Roojai\Blogs\Models\Blog
+defaultRedirect: roojai/blogs/blogs
+create:
+    redirect: 'roojai/blogs/blogs/update/:id'
+    redirectClose: roojai/blogs/blogs
+update:
+    redirect: roojai/blogs/blogs
+    redirectClose: roojai/blogs/blogs

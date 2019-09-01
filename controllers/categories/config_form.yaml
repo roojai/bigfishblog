@@ -1,0 +1,10 @@
+name: Categories
+form: $/roojai/blogs/models/category/fields.yaml
+modelClass: Roojai\Blogs\Models\Category
+defaultRedirect: roojai/blogs/categories
+create:
+    redirect: 'roojai/blogs/categories/update/:id'
+    redirectClose: roojai/blogs/categories
+update:
+    redirect: roojai/blogs/categories
+    redirectClose: roojai/blogs/categories

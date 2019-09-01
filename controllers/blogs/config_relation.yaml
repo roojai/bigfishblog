@@ -1,0 +1,16 @@
+categories:
+  label: Category
+  view:
+    list: $/roojai/blogs/models/category/columns.yaml
+    toolbarButtons: create|add|remove
+  manage:
+    form: $/roojai/blogs/models/category/fields.yaml
+    showCheckboxes: true
+form:
+  label: 'Lead Form'
+  view:
+      form: $/roojai/sitesystem/models/form/fields.yaml
+      toolbarButtons: link|unlink|create|update
+  manage:
+      form: $/roojai/sitesystem/models/form/fields.yaml
+      list: $/roojai/sitesystem/models/form/columns.yaml

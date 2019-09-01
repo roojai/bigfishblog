@@ -1,0 +1,10 @@
+name: Gallerys
+form: $/roojai/blogs/models/gallery/fields.yaml
+modelClass: Roojai\Blogs\Models\Gallery
+defaultRedirect: roojai/blogs/gallerys
+create:
+    redirect: 'roojai/blogs/gallerys/update/:id'
+    redirectClose: roojai/blogs/gallerys
+update:
+    redirect: roojai/blogs/gallerys
+    redirectClose: roojai/blogs/gallerys

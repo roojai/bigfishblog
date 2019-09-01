@@ -1,0 +1,4 @@
+title: Gallerys
+modelClass: Roojai\Blogs\Models\Gallery
+toolbar:
+    buttons: reorder_toolbar
