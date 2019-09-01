@@ -1,0 +1,143 @@
+{##}
+{% put head %}
+    <title>{{ blog.name }} | {{ global.global_name }}</title>
+    <meta name="title" content="{{ blog.name }} | {{ global.global_name }}">
+    <meta name="description" content="{{ blog.introduction|striptags }}">
+    <meta property="og:title" content="{{ blog.name }}" />
+    <meta property="og:description" content="{{ blog.introduction|striptags }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ 'singles/blog-items'|page({slug: blog.slug}) }}" />
+    {% if blog.teaserimage %}
+    <meta property="og:image" content="{{ blog.teaserimage|media|resize(600,350,{'mode':'crop'}) }}" />
+      {% endif %}
+{% endput %}
+
+<div class="uk-inline">
+{% if blog.publicview != 1 %}<div class="uk-badge uk-card-badge">Not Public</div>{% endif %}
+   {% if blog.teaserimage %}
+    <div class="uk-margin {{ __SELF__.property('imagestyle') }} uk-inline">
+        <img data-src="{{ blog.teaserimage|media|resize(1010, 550, {'mode':'crop', quality: '80'}) }}" alt="{{ blog.name }}" uk-img>
+    </div>
+  {% endif %}
+        <h1>{{ blog.name }}</h1>
+                {% if blog.introduction %}
+                    <div class="uk-margin-small uk-text-large" >{{ blog.introduction }}</div>
+                {% endif %}
+                {% if blog.date %}
+                    <hr class="uk-divider-small">
+                    <p class="uk-text-meta">{{ blog.date|date('l jS F Y') }}</p>
+                {% endif %}
+                {% if blog.author %}
+                <p class="uk-text-meta"><strong>{{ blog.author }}</strong></p>
+                {% endif %}
+
+    {% for section in blog.section %}
+        <div id ="section{{ loop.index }}">
+          <div class="uk-section-{{ section.section_back}} {% if section.section_back !="default" %} uk-padding {% endif %}{% if section.margin !="default" %}uk-margin-{{ section.margin }}-top uk-margin-{{ section.margin }}-bottom{% else %}uk-margin{% endif %}">
+
+
+            {% if section.layout=="text" %}
+                {{ section.text|raw }}
+                {% if section.buttons is not empty %}
+                  <div class="uk-flex uk-flex-{{ section.buttonposition }} uk-margin">
+                    {% for button in section.buttons %}
+                     {% if button.type == "leadmagnet" %}
+                      {% partial 'utility/leadform' leadform=blog.form buttonstyle=button.buttonstyle %}
+                      {% else %}
+                      {% partial 'utility/blockbuttons' button=button %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+            {% endif %}
+
+            {% if section.layout=="image-text" %}
+            <div class="uk-flex-center" uk-grid>
+          <div class="{{ section.position }}@m {% if __SELF__.property('sideimagestyle') %}{% if position == "uk-flex-last" %}tm-box-decoration-secondary{% else %}tm-box-decoration-primary{% endif %}{% endif %} uk-width-1-2@m ">
+                    {% if '.svg' in  section.image %}
+                    <img src="{{ section.image|media }}" alt="">
+                    {% else %}
+                    <img data-src="{{ section.image|media|resize(550,false,{ quality: '80'}) }}" alt="{% if section.caption %}{{ section.caption }}{% else %}{{ section.content|striptags|slice(0,40) }}{% endif %}" uk-img>
+                    {% endif %}
+                    {% if section.caption %}
+                    <p class="uk-text-meta">{{ section.caption }}</p>
+                    {% endif %}
+                </div>
+                <div class="uk-width-expand@m ">
+                        {{ section.text|raw }}
+                {% if section.buttons is not empty %}
+                  <div class="uk-margin" uk-grid>
+                      {% for button in section.buttons %}
+                       {% if button.type == "leadmagnet" %}
+                        {% partial 'utility/leadform' leadform=blog.form buttonstyle=button.buttonstyle %}
+                        {% else %}
+                        {% partial 'utility/blockbuttons' button=button %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if section.layout=="video" %}
+              {% if section.youtube %}
+                {% set remove = {
+                    'https://www.youtube.com/watch?v=' : '',
+                    'https://youtu.be/' : '',
+                    'http://www.youtube.com/v/' : '',
+                    'http://www.youtube.com/embed/' : '',
+                    'http://www.youtube.com/user/' : '',
+                    'http://www.youtube.com/?feature=player_embedded&v=' : '',
+                    'http://www.youtube.com/e/' : '',
+                    'http://www.youtube.com/?v=' : '',
+                    'http://www.youtube.com/watch?feature=player_embedded&v=' : '',
+                    'http://www.youtube-nocookie.com/v/' : '',
+                } %}
+              {% set youtubeid = section.youtube %}
+                  <div class="youtube-player" data-id="{{youtubeid|replace(remove)|split('&', 2)[0]}}"></div>
+              {% endif %}
+              {% if section.caption %}
+                <p class="uk-text-meta uk-margin-small-top">{{ section.caption }}</p>
+              {% endif %}
+            {% endif %}
+
+            {% if section.layout=="featured-image" %}
+                <div class="{% if section.smallimage == 1 %}uk-width-xlarge uk-margin-auto{% endif %}" uk-lightbox>
+                      <div class="{{ __SELF__.property('featureimagestyle') ? "tm-box-decoration-default uk-inline" }}">
+                          <a href="{{ section.image|media|resize(1300, false, { quality: '80'}) }}">
+                        <img data-src="{{ section.image|media|resize(1010, false, { quality: '80'}) }}" alt="{{ section.caption ? section.caption:blog.name }}" uk-img>
+                          </a>
+                          {% if section.caption and section.captionposition !="below" %}
+                              <div class="{% if section.smallimage == 1 %}uk-position-bottom {% else %}uk-position-bottom-right {% endif %}uk-overlay uk-overlay-default">{{ section.caption }}</div>
+                          {% endif %}
+                      </div>
+                  </div>
+                    {% if section.caption and section.captionposition =="below" %}
+                    <p class="uk-text-meta uk-margin-small-top">{{ section.caption }}</p>
+                    {% endif %}
+            {% endif %}
+
+             </div>
+            </div>
+    {% endfor %}
+    {% if blog.gallerys is not empty %}
+    <div class="uk-margin-large">
+    {% for gallery in blog.gallerys %}
+        <div class="uk-margin uk-text-center uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid uk-lightbox="animation: slide">
+
+          {% for image in gallery.images %}
+           <div>
+            <a class="uk-inline" href="{{ image.path }}">
+                <img data-src="{{ image.thumb(286,286,{'mode':'crop'}) }}" width="286" height="286" alt="{{ blog.name }} - slide {{loop.index}}" uk-img>
+            </a>
+            </div>
+          {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+   {% endif %}
+
+   {% set url='singles/blog-items'|page({slug: blog.slug}) %}
+   {% partial 'utility/socialshare' url=url %}
+    </div>

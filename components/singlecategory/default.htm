@@ -1,0 +1,56 @@
+{##}
+{% put head %}
+    <title>{{ category.name }} | {{ global.global_name }}</title>
+    <meta name="title" content="{{ category.name }} | {{ global.global_name }}">
+    <meta name="description" content="{{ category.introduction }}">
+    <meta property="og:title" content="{{ category.name }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ 'singles/category'|page({slug: category.slug}) }}" />
+    {% if category.mainimage %}
+    <meta property="og:image" content="{{ category.mainimage|media|resize(600,350,{'mode':'crop'}) }}" />
+    {% endif %}
+{% endput %}
+
+
+<div class="uk-section uk-section-default uk-section-overlap uk-position-relative">
+    <div class="uk-container uk-container-center">
+    <h1 class="uk-text-center {{ __SELF__.property('titlesize') }} {{ __SELF__.property('titlecolour') }}">{{ category.name  }}</h1>
+<div class="uk-grid-match uk-margin-medium" uk-grid uk-height-match="target: > div > .uk-card > .uk-card-body > .same-height ">
+{% for item in items %}
+
+<div class="uk-width-1-2@m uk-width-1-{{ __SELF__.property('columns') }}@l">
+<div class="uk-card uk-card-{{ __SELF__.property('cardstyle') }}">
+  {% if item.publicview != 1 %}<div class="uk-badge uk-card-badge">Not Public</div>{% endif %}
+        {% if item.teaserimage %}
+            <div class="uk-card-media-top {% if __SELF__.property('imagemask') %}tm-mask-default uk-inline{% endif %}">
+                    {% if item.slug  %}<a href="{{ 'singles/blog-items'|page({slug: item.slug}) }}">{% endif %}
+                                <img data-src="{{ item.teaserimage|media|resize(746,418,{'mode':'crop',  quality: '80'}) }}" alt="{{ item.name }}" uk-img>
+                    {% if item.slug  %}</a>{% endif %}
+            </div>
+            {% endif %}
+            <div class="uk-card-body">
+                 <div class="same-height">
+                        <h4 class="uk-text-primary">{{ item.name }}</h4>
+                        {% if item.date  %}<div class=" uk-text-meta">{{ item.date|date('l jS F Y') }}</div>{% endif %}
+                        {% if item.introduction %}
+                        <p>{{ item.introduction }}</p>
+                        {% endif %}
+                  </div>
+                 {% if item.external_link and item.external_option == 1 %}
+                <a class = "uk-button uk-button-secondary" href="{{ item.external_link }}" target="_blank">{{ __SELF__.property('readmore') }}</a>
+                {% elseif item.slug  %}
+                <a class = "uk-button uk-button-secondary" href="{{ 'singles/blog-items'|page({slug: item.slug}) }}">{{ __SELF__.property('readmore') }}</a>
+                {% endif %}
+                </div>
+</div></div>
+{% endfor %}
+</div>
+
+            <div class="uk-text-center uk-margin">
+                <div class="uk-list">
+                    {{ items.render|raw }}
+                </div>
+            </div>
+
+      </div>
+</div>
