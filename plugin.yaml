@@ -1,0 +1,24 @@
+plugin:
+    name: 'roojai.blogs::lang.plugin.name'
+    description: 'roojai.blogs::lang.plugin.description'
+    author: Roojai
+    icon: oc-icon-comment
+    homepage: ''
+navigation:
+    main-menu-blogs:
+        label: Blogs
+        url: roojai/blogs/blogs
+        icon: icon-comment
+        sideMenu:
+            side-menu-item-blogs:
+                label: Blogs
+                url: roojai/blogs/blogs
+                icon: icon-comment
+            side-menu-cats:
+                label: Categories
+                url: roojai/blogs/categories
+                icon: icon-cubes
+            side-menu-item:
+                label: Galleries
+                url: roojai/blogs/gallerys
+                icon: icon-picture-o

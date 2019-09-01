@@ -1,0 +1,23 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table roojai_blogs_blogs'
+    - builder_table_create_roojai_blogs_blogs.php
+1.0.3:
+    - 'Created table roojai_blogs_categories'
+    - builder_table_create_roojai_blogs_categories.php
+1.0.4:
+    - 'Created table roojai_blogs_gallerys'
+    - builder_table_create_roojai_blogs_gallerys.php
+1.0.5:
+    - 'Created table roojai_blogs_categories_blogs'
+    - builder_table_create_roojai_blogs_categories_blogs.php
+1.0.6:
+    - 'Created table roojai_blogs_gallerys_blogs'
+    - builder_table_create_roojai_blogs_gallerys_blogs.php
+1.0.7:
+    - 'Updated table roojai_blogs_blogs'
+    - builder_table_update_roojai_blogs_blogs.php
+1.0.8:
+    - 'Updated table roojai_blogs_blogs'
+    - builder_table_update_roojai_blogs_blogs_2.php
