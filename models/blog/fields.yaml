@@ -1,0 +1,308 @@
+fields:
+    name:
+        label: Title
+        span: auto
+        type: text
+        commentAbove: 'A short punchy title for your article'
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+        commentAbove: 'This is the url, and is automatically generated'
+    introduction:
+        label: Introduction
+        size: tiny
+        span: full
+        type: textarea
+        commentAbove: 'A short intro for your blog that will show up on the main blog landing page and also at the top of your article. It is important for SEO too!'
+    external_option:
+        label: 'Link to External URL'
+        span: auto
+        type: switch
+        comment: 'Switch this to "on" if you want to link to a URL outside of your site instead of the blog content'
+        tab: Content
+    external_link:
+        label: 'URL for external link'
+        span: auto
+        trigger:
+            action: show
+            field: external_option
+            condition: checked
+        type: text
+        commentAbove: 'Enter the external URL in full here'
+        tab: Content
+tabs:
+    fields:
+        teaserimage:
+            label: 'Intro Image'
+            mode: image
+            imageWidth: '200'
+            imageHeight: '150'
+            span: auto
+            type: mediafinder
+            commentAbove: 'Important to add, even if using a feature video. Please make sure to optimise images before uploading'
+            tab: Teaser
+        video_src:
+            label: 'URL of video'
+            span: auto
+            type: text
+            commentAbove: 'Please only add the youtube URL here if you want this to show in the teaser'
+            tab: Teaser
+        mainimagesize:
+            label: 'Tick for small image display'
+            span: auto
+            type: checkbox
+            comment: '(useful for portrait shaped images)'
+            tab: Teaser
+        section:
+            label: Section
+            prompt: 'Add new section'
+            span: full
+            type: repeater
+            tab: 'Main content sections'
+            form:
+                fields:
+                    section1:
+                        label: 'START OF THIS SECTION'
+                        span: full
+                        type: section
+                    layout:
+                        label: Layout
+                        options:
+                            text: 'A text block section'
+                            image-text: 'Image and text side by side section'
+                            video: 'A video'
+                            featured-image: 'Single image'
+                        span: left
+                        placeholder: Select
+                        type: dropdown
+                        commentAbove: 'Choose the layout for this section'
+                    text:
+                        label: 'Content Text'
+                        size: giant
+                        span: full
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[image-text],value[text],value[leadform]'
+                        type: richeditor
+                    margin:
+                        label: 'Margins (top and bottom)'
+                        options:
+                            medium: Default
+                            default: Small
+                            small: 'Extra Small'
+                            large: Large
+                            remove: Remove
+                        span: auto
+                        default: medium
+                        type: dropdown
+                        commentAbove: 'Set the margin above and below'
+                    section_back:
+                        label: 'Background Style'
+                        options:
+                            default: Default
+                            primary: Primary
+                            secondary: Secondary
+                            muted: Muted
+                        span: auto
+                        default: default
+                        type: dropdown
+                        commentAbove: 'The colour of the background for this section'
+                    youtube:
+                        label: 'Youtube URL'
+                        span: full
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[video]'
+                        type: text
+                        commentAbove: 'Enter the url of your youtube video'
+                    image:
+                        label: Image
+                        mode: image
+                        imageWidth: '200'
+                        imageHeight: '150'
+                        span: auto
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[image-text],value[featured-image]'
+                        type: mediafinder
+                        commentAbove: 'Add your image here'
+                    position:
+                        label: 'Image Position'
+                        options:
+                            uk-flex-last: Left
+                            uk-flex-first: Right
+                        span: auto
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[image-text]'
+                        type: dropdown
+                        commentAbove: 'Choose if Left or Right, default is left.'
+                    caption:
+                        label: Caption
+                        span: auto
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[featured-image],value[image-text],value[video]'
+                        type: text
+                    captionposition:
+                        label: 'Caption Position'
+                        options:
+                            default: 'On the image'
+                            below: 'Below the image'
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[featured-image]'
+                        span: auto
+                        type: dropdown
+                    smallimage:
+                        label: 'Show small image'
+                        span: auto
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[featured-image]'
+                        type: checkbox
+                    buttonposition:
+                        label: 'Button Alignment'
+                        options:
+                            center: Center
+                            left: Left
+                            right: Right
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[leadform],value[image-text],value[text]'
+                        span: auto
+                        type: dropdown
+                    buttons:
+                        label: 'Buttons (can be links or PDFs)'
+                        prompt: 'Add new button'
+                        span: full
+                        trigger:
+                            action: show
+                            field: layout
+                            condition: 'value[image-text],value[text]'
+                        type: repeater
+                        form:
+                            fields:
+                                type:
+                                    label: Purpose
+                                    options:
+                                        link: 'External Link'
+                                        linkinternal: 'Internal Link'
+                                        file: 'PDF File'
+                                        leadmagnet: 'Lead Magnet'
+                                    span: auto
+                                    placeholder: Select
+                                    type: dropdown
+                                buttontext:
+                                    label: 'Text for the button'
+                                    span: auto
+                                    type: text
+                                    trigger:
+                                        action: show
+                                        field: type
+                                        condition: 'value[link],value[file]'
+                                link:
+                                    label: 'Link URL'
+                                    span: auto
+                                    trigger:
+                                        action: show
+                                        field: type
+                                        condition: 'value[link]'
+                                    type: text
+                                buttonstyle:
+                                    label: 'Button Style'
+                                    options:
+                                        uk-button-default: Default
+                                        uk-button-primary: Primary
+                                        uk-button-secondary: Secondary
+                                        'uk-button-default uk-button-large': 'Default Large'
+                                        'uk-button-primary uk-button-large': 'Primary Large'
+                                        'uk-button-secondary uk-button-large': 'Secondary Large'
+                                    span: auto
+                                    type: dropdown
+                                    trigger:
+                                        action: show
+                                        field: type
+                                        condition: 'value[file],value[link],value[leadmagnet]'
+                                pdffile:
+                                    label: 'Select File'
+                                    mode: file
+                                    span: auto
+                                    trigger:
+                                        action: show
+                                        field: type
+                                        condition: 'value[file]'
+                                    type: mediafinder
+                                form:
+                                    label: 'Lead Form'
+                                    path: field_form
+                                    type: partial
+                                    trigger:
+                                        action: show
+                                        field: type
+                                        condition: 'value[leadmagnet]'
+                                newtab:
+                                    label: 'Open in new tab'
+                                    span: auto
+                                    type: checkbox
+                                    trigger:
+                                        action: show
+                                        field: type
+                                        condition: 'value[link],value[file]'
+        publicview:
+            label: 'Public?'
+            span: auto
+            default: 1
+            type: switch
+            comment: 'Toggle to make private'
+            tab: Admin
+        feature:
+            label: 'Feature this blog?'
+            span: auto
+            type: switch
+            comment: 'Sliding to "On" will feature this blog'
+            tab: Admin
+        date:
+            label: 'Publish Date'
+            mode: date
+            span: auto
+            default: now
+            type: datepicker
+            commentAbove: 'If left blank this will automatically choose todays date.'
+            tab: Admin
+        show_newsletter:
+            label: 'Show Newsletter Signup?'
+            span: auto
+            type: switch
+            comment: 'Click to "On" to show the signup'
+            tab: Admin
+        section1:
+            label: Categories
+            span: full
+            type: section
+            comment: 'If you wish to use categories to separate types of blogs, then please add them here.'
+            tab: Admin
+        categories:
+            span: full
+            path: field_category
+            type: partial
+            tab: Admin
+        gallerys:
+            label: Galleries
+            nameFrom: name
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Gallery

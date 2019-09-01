@@ -1,0 +1,48 @@
+fields:
+    name:
+        label: Name
+        oc.commentPosition: ''
+        span: full
+        type: text
+    publicview:
+        label: 'Public?'
+        span: auto
+        default: 1
+        type: switch
+        comment: 'Switch to "On" to make public'
+    feature:
+        label: 'Feature this category'
+        span: auto
+        type: switch
+        comment: 'Sliding to "On" will feature this category'
+    introduction:
+        label: Introduction
+        size: tiny
+        oc.commentPosition: ''
+        span: auto
+        type: textarea
+    mainimage:
+        label: 'Category Image'
+        oc.commentPosition: ''
+        mode: image
+        imageWidth: '200'
+        imageHeight: '150'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    sort_order:
+        label: Ordering
+        span: auto
+        type: number
+        commentAbove: 'For setting the display order of the categories. TIP: its easier to use the reorder button on the list page'
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+        commentAbove: 'This is the url that is auto generated from the name'

@@ -1,0 +1,32 @@
+columns:
+    name:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    publicview:
+        label: 'Public?'
+        type: inetis-list-switch
+        icon: 'true'
+        titleTrue: 'Unpublish item'
+        titleFalse: 'Publish item'
+        textTrue: Published
+        textFalse: Unpublished
+    teaserimage:
+        label: Image
+        type: partial
+        sortable: false
+        path: ~/plugins/roojai/blogs/models/blog/teaserimage_column.htm
+    date:
+        label: Date
+        type: date
+        sortable: true
+    feature:
+        label: 'Featured?'
+        type: inetis-list-switch
+        icon: 'true'
+        titleTrue: 'Unfeature item'
+        titleFalse: 'Feature item'
+        textTrue: Featured
+        textFalse: Unfeatured
+        sortable: true

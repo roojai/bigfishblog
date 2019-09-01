@@ -1,0 +1,32 @@
+columns:
+    name:
+        label: 'Category name'
+        type: text
+        searchable: true
+        sortable: true
+    publicview:
+        label: 'Public?'
+        type: inetis-list-switch
+        icon: 'true'
+        titleTrue: 'Unpublish item'
+        titleFalse: 'Publish item'
+        textTrue: Published
+        textFalse: Unpublished
+    mainimage:
+        label: 'Category Image'
+        type: partial
+        sortable: false
+        path: ~/plugins/roojai/blogs/models/category/mainimage_column.htm
+    feature:
+        label: 'Featured?'
+        type: inetis-list-switch
+        icon: 'true'
+        titleTrue: 'Unfeature category'
+        titleFalse: 'Feature category'
+        textTrue: Featured
+        textFalse: Unfeatured
+        sortable: true
+    sort_order:
+        label: Order
+        type: number
+        sortable: true

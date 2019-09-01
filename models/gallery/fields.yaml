@@ -1,0 +1,17 @@
+fields:
+    name:
+        label: 'Gallery Name'
+        span: auto
+        type: text
+    images:
+        label: Images
+        mode: image
+        imageWidth: '150'
+        imageHeight: '100'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+        commentAbove: 'Upload your images here (can upload many at once). I have turned off image optimisation so these images MUST be optimised before upload. If unsure then ask Rupert'
